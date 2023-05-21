@@ -1,0 +1,385 @@
+/* Minification failed. Returning unminified contents.
+(201,54-55): run-time error JS1195: Expected expression: >
+(210,1-2): run-time error JS1002: Syntax error: }
+(211,23-24): run-time error JS1004: Expected ';': {
+(347,43-44): run-time error JS1014: Invalid character: `
+(347,44-45): run-time error JS1195: Expected expression: <
+(347,66-67): run-time error JS1014: Invalid character: `
+(349,39-40): run-time error JS1014: Invalid character: `
+(349,40-41): run-time error JS1195: Expected expression: <
+(350,29-30): run-time error JS1195: Expected expression: <
+(352,53-54): run-time error JS1195: Expected expression: <
+(353,33-34): run-time error JS1197: Too many errors. The file might not be a JavaScript file: <
+(332,1-53): run-time error JS1301: End of file encountered before function is properly closed: function getDataNews(idHtml, nSoluong, hPage, notin)
+(353,37-38): run-time error JS1004: Expected ';': {
+(353,53-54): run-time error JS1195: Expected expression: <
+(353,54-55): run-time error JS1197: Too many errors. The file might not be a JavaScript file: /
+(269,5-13): run-time error JS1018: 'return' statement outside of function: return e
+(268,21-66): run-time error JS1018: 'return' statement outside of function: return new RegExp(a[vars].value, "g").test(e)
+ */
+$(function () {
+    if (location.pathname.toLowerCase() == "/home/index") {
+        location.href = "https://www.matbao.net/";
+    }
+    var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform), EventClick = "click", numSlide = 4; window.innerWidth <= 1080 && (numSlide = 3), window.innerWidth <= 975 && (numSlide = 4), window.innerWidth <= 640 && (numSlide = 3);
+    if (iOS) {
+        EventClick = "touchstart";
+    }
+    if (window.innerWidth > 640) {
+        var bgArray = ['home-background-1', 'home-background-2', 'home-background-3', 'home-background-4', 'home-background-5', 'home-background-6', 'home-background-7', 'home-background-8', 'home-background-9', 'home-background-10', 'home-background-11', 'home-background-12', 'home-background-13', 'home-background-14', 'home-background-16'];
+		/* trung thu: 'home-background-15' */
+        var bg = bgArray[Math.floor(Math.random() * bgArray.length)];
+        $('.main-checkdomain').attr("class", "main-checkdomain " + bg);
+    }
+    $('.slider-tenmien').slick({
+        variableWidth: true,
+        infinite: true,
+        autoplay: false,
+        arrows: (window.innerWidth <= 550 ? false : true),
+        centerMode: false,
+        autoplaySpeed: 7000,
+        slidesToShow: numSlide,
+        slidesToScroll: numSlide
+    });
+    $('.hastip').click(function (event) {
+        event.preventDefault();
+        var overtip = $(".overtip");
+        overtip.hide();
+        overtip.removeClass("left");
+        overtip.removeClass("right");
+        var head = window.innerWidth;
+        var bannerTop = $("#bannertop img").html();
+        var utop = $(this).offset().top - ((head > 768 ? 127 : 50) + (bannerTop != undefined ? (head > 768 ? 50 : 75) : 0));
+        var ulef = $(this).offset().left;
+        if (ulef <= 100) {
+            ulef = ulef + 80;
+            overtip.addClass("left");
+        }
+        else if (ulef >= window.innerWidth - 60) {
+            overtip.addClass("right");
+        }
+        overtip.html($(this).attr('data-original'));
+        overtip.attr("style", "display:block; position: absolute; top: " + utop + "px; left: " + ulef + "px; margin-left:-140px; margin-top:30px; z-index:3000");
+        return false;
+    });
+    $("body").on(EventClick, ".main", function () {
+        var ispopshow = $(".overtip").is(":visible");
+        if (ispopshow) {
+            $(".overtip").hide();
+        }
+    });
+    $("body").on(EventClick, ".overtip .close", function () {
+        $(this).parent().hide();
+    });
+    getDataNews("#datacauchuyen", 3, 1, 0);
+    //$('.slideTrangChu').not('.slick-initialized').slick({
+    //    infinite: true,
+    //    autoplay: true,
+    //    autoplaySpeed: 8000,
+    //    dots: (window.innerWidth <= 990 ? true : false),
+    //    arrows: (window.innerWidth <= 990 ? false : true),
+    //    centerMode: true,
+    //    slidesToShow: (window.innerWidth <= 990 ? 1 : 2),
+    //    slidesToScroll: 1
+    //});
+    //$("body").on(EventClick, "#cauchuyenKH .tabhome [id*='_tab']", function () {
+    //    var txid = $(this).attr("id").replace("_tab", "");
+    //    $("#cauchuyenKH .tabhome [id*='_tab']").removeClass("active");
+    //    $("[id='" + txid + "_tab']").addClass("active");
+    //    $("#cauchuyenKH .contTaphome [id*='_trangchu']").hide();
+    //    $("[id='" + txid + "_trangchu']").fadeIn();
+    //    if (txid == "danhgia") {
+    //        $("#cauchuyenKH").removeClass("afterGadiant");
+    //        $(".btnViewStore").hide();
+    //        if ($(".slideTrangChu .slick-active").width() <= 0) {
+    //            $(".slideTrangChu .slick-track").css("width", 530 * 13 + "px");
+    //            $(".slideTrangChu .slick-slide").css("width","505px");
+    //        }
+    //    }
+    //    else {
+    //        $("#cauchuyenKH").addClass("afterGadiant");
+    //        $(".btnViewStore").show();
+    //    }
+    //});
+    if (window.innerWidth <= 550) {
+        $("#btnWhois").attr("value", "");
+    }
+    $("body").on(EventClick, ".moreBanner", function () {
+        $(".allBanner .con").html("");
+        $(".slick-slide:not(.slick-cloned) .hinhs").each(function (index) {
+            $(".allBanner .con").append("<a href='" + $(this).attr("href") + "' target='_blank'>" + $(this).html() + "</a>");
+        });
+        $(".allBanner").show();
+    });
+    $("body").on(EventClick, ".allBanner .close", function () {
+        $(".allBanner").hide();
+        $(".allBanner .con").html("");
+    });
+    $('.slideBanner').slick({
+        infinite: true,
+        autoplay: true,
+        dots: true,
+        arrows: (window.innerWidth <= 550 ? false : true),
+        autoplaySpeed: 8000,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    });
+    $(".searchDomain input[type=button]").click(function () {
+        $(this).hide();
+        $("#loadingaction").show();
+    });
+    $('.sdContent').slick({
+        infinite: true,
+        autoplay: true,
+        dots: (window.innerWidth <= 550 ? true : false),
+        arrows: true,
+        centerMode:false,
+        autoplaySpeed: 8000,
+        slidesToShow: (window.innerWidth <= 550 ? 2 : window.innerWidth >= 786 && window.innerWidth <= 980 ? 3 : window.innerWidth >= 981 && window.innerWidth <= 1020 ? 4 : window.innerWidth <= 1199 ? 3 : 4),
+        slidesToScroll: 1
+    });
+    //$('.sdFour_New.jcarousel').jcarouselAutoscroll({
+    //    target: '+=1',
+    //    interval: 10000
+    //});
+    //$('.sdFour_New.jcarousel').jcarousel({
+    //    animation: {
+    //        duration: 1000
+    //    }
+    //});
+    $('#slideGioiThieu').slick({
+        infinite: true,
+        autoplay: true,
+        dots: true,
+        arrows: false,
+        autoplaySpeed: 6000,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    });
+    //$('#carousel-gioithieu .jcarousel').jcarouselAutoscroll();
+    $(".panel-heading.collapsed").click(function () {
+        var gindex = $(this).attr("id").replace("heading", "");
+        $("#collapse" + gindex).toggle();
+        if ($("#collapse" + gindex).attr("style") == "display: block;") {
+            $(this).addClass("active");
+        }
+        else {
+            $(this).removeClass("active");
+        }
+    });
+    //$("a[id*='show-gt']").click(function () {
+    //    var num = $(this).attr("id").replace("show-gt-", "");
+    //    $(".gioithieu-" + num).children().children().children(".content-detail-6").attr("style", "height: auto");
+    //    $(this).hide();
+    //});
+    //$("#domainwhois").keydown(function (e) {
+    //    if (e.keyCode == 13) {
+    //        $("#btnWhois").trigger("click");
+    //        return false;
+    //    }
+    //});
+    /* khuyen mai theo khu vuc 
+    var date = new Date();
+    var curDay = (date.getDate() < 10 ? "0" : "") + date.getDate();
+    var curMonth = ((date.getMonth() + 1) < 10) ? ('0' + (date.getMonth() + 1)) : (date.getMonth() + 1);
+    var curYear = date.getFullYear().toString();
+    var CurHour = (date.getHours() < 10 ? "0" : "") + date.getHours();
+    var CurMinute = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+    var daew = parseInt(curYear + curMonth + curDay);
+    var hoew = parseInt(CurHour + CurMinute);
+    var noew = parseInt(curYear + curMonth + curDay + CurHour + CurMinute);
+    if (noew < parseInt('202109012359') && noew >= parseInt('202108090900')) {
+        $.get("/Home/layThongtinLocation", function (_data) {
+            var resp = $.parseJSON(_data);
+            if (resp.Status == true) {
+                var LocationGet = resp.Data;
+                if (LocationGet != undefined && LocationGet != "") {
+                    var myIPget = LocationGet.split('|');
+                    if (myIPget[1] == "VN" && myIPget[2] == "HN") {
+                        //var ishot = "<a class='item' title='Tên miền .vn' href='/ten-mien/.vn.html' tabindex='0' style=''>Ưu đãi 200k</a>\
+                        //<strong class='s1'>Tên miền VN</strong><strong class='s2'>Tên miền VN</strong><i>Hot</i>";
+                        //$("#isKMHot").html(ishot);
+                        //var islinkBanner = "/ten-mien/.vn.html?utm_source=bannertrangchu&utm_medium=marcom&utm_campaign=ctkmmienbac";
+                        //var isSrcBanner = "/Content/images/HomePage/Banner-Thumbnail/5._Banner_trang_chu_HN_20210816.jpg";
+                        //$('a[title="MB-KM1"]').attr("href", islinkBanner);
+                        //$('a[title="MB-KM1"] img').attr("src", isSrcBanner);
+                        if ($("#ModalPopupHome").attr("class").indexOf(' in') > -1) {
+                            $("#ModalPopupHome a").attr("href", "/ten-mien/.vn.html?utm_source=popup&utm_medium=marcom&utm_campaign=ctkmmairiu");
+                            if ($("#ModalPopupHome img").attr("class").indexOf("visible-xs-block") > -1)
+                                $("#ModalPopupHome img").attr("src", "/Content/images/PopUpImage/CTKM-Uu-dai-200k-360x640.gif");
+                            else
+                                $("#ModalPopupHome img").attr("src", "/Content/images/PopUpImage/CTKM-Uu-dai-200k-640x360.gif");
+                        }
+                    }
+                }
+            }
+        });
+    }
+    end khuyen mai theo khu vuc */
+});
+document.addEventListener('readystatechange', event => {
+    if (event.target.readyState === "interactive") {
+        setTimeout(function () {
+            $("img[slide-src*='/']").each(function () {
+                $(this).attr("src", $(this).attr('slide-src'));
+                $(this).removeAttr('slide-src');
+            });
+        }, 10);
+    }
+});
+function IsUnicode(e) {
+    var a = [{
+        key: "a", value: "á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ"
+    }
+    ,
+    {
+        key: "d", value: "đ"
+    }
+    ,
+    {
+        key: "e", value: "é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ"
+    }
+    ,
+    {
+        key: "i", value: "í|ì|ỉ|ĩ|ị"
+    }
+    ,
+    {
+        key: "o", value: "ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ"
+    }
+    ,
+    {
+        key: "u", value: "ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự"
+    }
+    ,
+    {
+        key: "y", value: "ý|ỳ|ỷ|ỹ|ỵ"
+    }
+    ,
+    {
+        key: "A", value: "Á|À|Ả|Ã|Ạ|Ă|Ắ|Ặ|Ằ|Ẳ|Ẵ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ"
+    }
+    ,
+    {
+        key: "D", value: "Đ"
+    }
+    ,
+    {
+        key: "E", value: "É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ"
+    }
+    ,
+    {
+        key: "I", value: "Í|Ì|Ỉ|Ĩ|Ị"
+    }
+    ,
+    {
+        key: "O", value: "Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ"
+    }
+    ,
+    {
+        key: "U", value: "Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự"
+    }
+    ,
+    {
+        key: "Y", value: "Ý|Ỳ|Ỷ|Ỹ|Ỵ"
+    }
+    ];
+    for (vars in a) return new RegExp(a[vars].value, "g").test(e);
+    return e
+}
+
+function RemoveUnicode(e) {
+    var a = [{
+        key: "a", value: "á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ"
+    }
+    ,
+    {
+        key: "d", value: "đ"
+    }
+    ,
+    {
+        key: "e", value: "é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ"
+    }
+    ,
+    {
+        key: "i", value: "í|ì|ỉ|ĩ|ị"
+    }
+    ,
+    {
+        key: "o", value: "ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ"
+    }
+    ,
+    {
+        key: "u", value: "ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự"
+    }
+    ,
+    {
+        key: "y", value: "ý|ỳ|ỷ|ỹ|ỵ"
+    }
+    ,
+    {
+        key: "A", value: "Á|À|Ả|Ã|Ạ|Ă|Ắ|Ặ|Ằ|Ẳ|Ẵ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ"
+    }
+    ,
+    {
+        key: "D", value: "Đ"
+    }
+    ,
+    {
+        key: "E", value: "É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ"
+    }
+    ,
+    {
+        key: "I", value: "Í|Ì|Ỉ|Ĩ|Ị"
+    }
+    ,
+    {
+        key: "O", value: "Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ"
+    }
+    ,
+    {
+        key: "U", value: "Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự"
+    }
+    ,
+    {
+        key: "Y", value: "Ý|Ỳ|Ỷ|Ỹ|Ỵ"
+    }
+    ];
+    for (vars in a) e = e.replace(new RegExp(a[vars].value, "g"), a[vars].key);
+    return e
+}
+function getDataNews(idHtml, nSoluong, hPage, notin) {
+    $.ajax({
+        type: 'GET',
+        url: "/danh-sach-cau-chuyen-khach-hang.html",
+        data:
+            { nSize: nSoluong, nPage: hPage, notinID: notin },
+        async: false,
+        success: function (_data) {
+            if (_data.Type == 1) {
+                var returnHtml = ""; var returnHtml2 = "";
+                var data = _data.lstNews;
+                if (data != null) {
+                    $.each(data, function (i, value) {
+                        var urlTitle = value.urlTitle;
+                        if (nSoluong > 1) {
+                            returnHtml += `<div class='col-md-4'>`;
+                        }
+                        returnHtml += `<a class='newItem' href='/cau-chuyen-khach-hang/${(urlTitle == null || urlTitle == '' ? replaceVar(value.TieuDe) : urlTitle) + "-" + value.ID}.html' target='_blank'>
+                            <span><img alt='${value.Search_CusTitle}' src='https://www.matbao.net${value.CusImage}' /></span>
+                            <span>
+                                <b>${value.CusTitle}</b>
+                                <i>${value.CusBrief}</i>
+                            </span>
+                        </a>`;
+                        if (nSoluong > 1) {
+                            returnHtml += `</div>`;
+                        }
+                    });
+                }
+                $(idHtml).html(returnHtml);
+            }
+            return;
+        }
+    });
+};
